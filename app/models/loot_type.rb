@@ -1,0 +1,2 @@
+class LootType < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class LootSpec < ApplicationRecord
+end

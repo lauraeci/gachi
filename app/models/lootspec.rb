@@ -1,2 +1,0 @@
-class Lootspec < ApplicationRecord
-end

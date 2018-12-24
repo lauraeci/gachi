@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  loot_type_id: 1
+  loot_type: MyString
+  rarity: 9.99
+
+two:
+  loot_type_id: 1
+  loot_type: MyString
+  rarity: 9.99

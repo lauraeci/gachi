@@ -1,6 +1,7 @@
 class Api::BidsController < ApplicationController
 
   before_action :authenticate_request!
+  before_action :set_auction
 
   def index
     @bids = Bid.all
@@ -15,7 +16,9 @@ class Api::BidsController < ApplicationController
   # POST /bids
   # POST /bids.json
   def create
-    @bid = auction.bids.new(bid_params)
+    render status: :unprocessable_entity, json: {message: 'Auction ended.'} and return unless @auction
+
+    @bid = @auction.bids.new(bid_params)
     @bid.user = current_user
 
     is_max_bid = @bid.max_bid?
@@ -29,9 +32,9 @@ class Api::BidsController < ApplicationController
 
   protected
 
-  def auction
+  def set_auction
     @game = current_user.game
-    @auction ||= Auction.where("DATE(?) BETWEEN DATE(started_at) AND DATE(ended_at)", Date.today).where(game_id: @game.id).first
+    @auction = Auction.where("DATE(?) BETWEEN DATE(started_at) AND DATE(ended_at)", Date.today).where(game_id: @game.id).first
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

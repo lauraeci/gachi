@@ -1,14 +1,23 @@
 Rails.application.routes.draw do
-  post 'auth_user' => 'authentication#authenticate_user'
-  devise_for :users
-  resources :users
+  namespace :gachi do
+    resources :builders
+    resources :loot_builder_groups
+    resources :auction_items
+    post 'auth_user' => 'authentication#authenticate_user'
+    devise_for :users
+    resources :users
 
-  namespace :api do
-    resource :auctions do
-      resources :bids do
-        resources :retractions
+    namespace :api do
+      resource :auctions do
+        resources :bids do
+          resources :retractions
+        end
       end
     end
+
+    # front-end
+    resources :loot
+    resources :loot_specs
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

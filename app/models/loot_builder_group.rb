@@ -1,0 +1,2 @@
+class LootBuilderGroup < ApplicationRecord
+end

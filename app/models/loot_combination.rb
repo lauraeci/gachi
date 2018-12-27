@@ -1,0 +1,2 @@
+class LootCombination < ApplicationRecord
+end

@@ -1,46 +1,51 @@
 class Gachi::LootSpecsController < ApplicationController
+  before_action :set_loot_spec, only: [:show, :update, :destroy]
 
+  # GET /lootSpecs
   def index
-    @loot_spec = LootSpec.all
-    render json: @loot_spec, status: :ok
+    @loot_specs = LootSpec.all
+
+    render json: @loot_specs
   end
 
+  # GET /lootSpecs/1
   def show
-    @loot_spec = LootSpec.find(params[:id])
-    render json: @loot_spec, status: :ok
+    render json: @loot_spec
   end
 
+  # POST /lootSpecs
   def create
     @loot_spec = LootSpec.new(loot_spec_params)
-    @loot_spec.author = User.find(1)
 
     if @loot_spec.save
-      render json: @loot_spec, status: :created
+      render json: @loot_spec, status: :created, location: @loot_spec
     else
-      render status: :internal_server_error
+      render json: @loot_spec.errors, status: :unprocessable_entity
     end
   end
 
+  # PATCH/PUT /lootSpecs/1
   def update
-    @loot_spec = LootSpec.find(params[:id])
-
     if @loot_spec.update(loot_spec_params)
-      render json: @loot_spec, status: :created
+      render json: @loot_spec
     else
-      render status: :internal_server_error
+      render json: @loot_spec.errors, status: :unprocessable_entity
     end
   end
 
+  # DELETE /lootSpecs/1
   def destroy
-    @loot_spec = LootSpec.find(params[:id])
-    @loot_spec.delete
-
-    render status: :ok
+    @loot_spec.destroy
   end
 
   private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_loot_spec
+    @loot_spec = LootSpec.find(params[:id])
+  end
 
+  # Only allow a trusted parameter "white list" through.
   def loot_spec_params
-    params.require(:lootSpec).permit(:name, :title, :body, :reference, :picture)
+    params.fetch(:loot_spec, {})
   end
 end

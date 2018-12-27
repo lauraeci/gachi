@@ -1,8 +1,8 @@
-export function authorsFormattedForDropdown(authors) {
-  return authors.map(author => {
+export function lootSpecsFormattedForDropdown(lootSpecs) {
+  return lootSpecs.map(lootSpecs => {
     return {
-      value: author.id,
-      text: author.firstName + ' ' + author.lastName
+      value: lootSpecs.id,
+      text: lootSpecs.name
     };
   });
 }

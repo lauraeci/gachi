@@ -18,7 +18,7 @@ class Gachi::LootSpecsController < ApplicationController
     @loot_spec = LootSpec.new(loot_spec_params)
 
     if @loot_spec.save
-      render json: @loot_spec, status: :created, location: @loot_spec
+      render json: @loot_spec, status: :created, location: gachi_loot_specs_url(@loot_spec)
     else
       render json: @loot_spec.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class Gachi::LootSpecsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def loot_spec_params
-    params.fetch(:loot_spec, {})
+    params.fetch(:loot_spec, {}).permit(:name, :lvl)
   end
 end

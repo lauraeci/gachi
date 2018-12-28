@@ -11,14 +11,14 @@ export const loadLootSpecs = () => {
           return [];
         }
 
-        return Promise.reject(Error(`StatusCode: ${response.status}`))
+        return Promise.reject(Error(`StatusCode: ${response.status}`));
       }).then(result => {
       dispatch(receivedLootSpecs(result));
     }).catch(error => {
       throw (error);
-    })
-  }
-}
+    });
+  };
+};
 
 export const saveLootSpec = (lootSpec) => {
   return dispatch => {
@@ -37,20 +37,20 @@ export const saveLootSpec = (lootSpec) => {
       }
     ).then(
       response => {
-        if (response.status == 200) {
-          return response.json()
+        if (response.status == 201) {
+          return response.json();
         } else if (response.status == 401) {
           return [];
         }
 
-        return Promise.reject(Error(`StatusCode: ${response.status}`))
+        return Promise.reject(Error(`StatusCode: ${response.status}`));
       }).then(result => {
       dispatch(savedLootSpecs(result));
     }).catch(error => {
       throw (error);
-    })
-  }
-}
+    });
+  };
+};
 
 
 export const receivedLootSpecs = createAction(types.LOAD_LOOTSPECS_SUCCESS);

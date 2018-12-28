@@ -36,8 +36,7 @@ class LootSpecsPage extends React.Component {
 }
 
 LootSpecsPage.propTypes = {
-  lootSpecs: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+  lootSpecs: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
@@ -46,10 +45,5 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(lootSpecActions, dispatch)
-  };
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(LootSpecsPage);
+export default connect(mapStateToProps)(LootSpecsPage);

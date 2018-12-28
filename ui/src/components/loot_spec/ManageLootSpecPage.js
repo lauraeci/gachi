@@ -1,8 +1,7 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as lootSpecActions from '../../actions/lootSpecActions';
 import LootSpecForm from './LootSpecForm';
+import {saveLootSpec} from "../../actions/lootSpecActions";
 import {lootSpecsFormattedForDropdown} from '../../selectors/selectors';
 import toastr from 'toastr';
 
@@ -17,11 +16,11 @@ export class ManageLootSpecPage extends React.Component {
     };
 
     this.updateLootSpecState = this.updateLootSpecState.bind(this);
-    this.saveLootSpec = this.saveLootSpec.bind(this);
+    this.saveNewLootSpec = this.saveNewLootSpec.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.lootSpec.id != nextProps.lootSpec.id) {
+    if (this.props.lootSpec.name != nextProps.lootSpec.name) {
       // Necessary to populate form when existing loot_spec is loaded directly.
       this.setState({lootSpec: Object.assign({}, nextProps.lootSpec)});
     }
@@ -38,7 +37,7 @@ export class ManageLootSpecPage extends React.Component {
     let formIsValid = true;
     let errors = {};
 
-    if (this.state.lootSpec.title.length < 5) {
+    if (this.state.lootSpec.name.length < 1) {
       errors.title = 'Title must be at least 5 characters.';
       formIsValid = false;
     }
@@ -48,7 +47,7 @@ export class ManageLootSpecPage extends React.Component {
   }
 
 
-  saveLootSpec(event) {
+  saveNewLootSpec(event) {
     event.preventDefault();
 
     if (!this.lootSpecFormIsValid()) {
@@ -57,9 +56,11 @@ export class ManageLootSpecPage extends React.Component {
 
     this.setState({saving: true});
 
-    this.props.actions.saveLootSpec(this.state.lootSpec)
+
+    this.props.saveLootSpec(this.state.lootSpec)
       .then(() => this.redirect())
       .catch(error => {
+        alert(error)
         toastr.error(error);
         this.setState({saving: false});
       });
@@ -67,6 +68,7 @@ export class ManageLootSpecPage extends React.Component {
 
   redirect() {
     this.setState({saving: false});
+    alert("Save");
     toastr.success('LootSpec saved');
     this.context.router.push('/loot_specs');
   }
@@ -75,7 +77,7 @@ export class ManageLootSpecPage extends React.Component {
     return (
       <LootSpecForm
         onChange={this.updateLootSpecState}
-        onSave={this.saveLootSpec}
+        onSave={this.saveNewLootSpec}
         lootSpec={this.state.lootSpec}
         errors={this.state.errors}
         saving={this.state.saving}
@@ -114,10 +116,9 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(lootSpecActions, dispatch)
-  };
-}
+const mapDispatchToProps = {
+  saveLootSpec
+};
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageLootSpecPage);

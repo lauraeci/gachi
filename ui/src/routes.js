@@ -4,7 +4,7 @@ import App from './components/App';
 import HomePage from './components/home/HomePage';
 import AboutPage from './components/about/AboutPage';
 import LootSpecsPage from './components/loot_spec/LootSpecsPage';
-import ManageLootSpecPage from './components/loot_spec/ManageLootSpecPage'; //eslint-disable-line import/no-named-as-default
+import ManageLootSpecPage from './components/loot_spec/ManageLootSpecPage';
 
 export default (
   <Route path="/" component={App}>

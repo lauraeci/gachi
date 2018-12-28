@@ -1,7 +1,7 @@
 import React from 'react';
 import TextInput from '../common/TextInput';
 
-const LootSpecForm = ({lootSpec, allAuthors, onSave, onChange, saving, errors}) => {
+const LootSpecForm = ({lootSpec, onSave, onChange, saving, errors}) => {
   return (
     <form>
       <h1>Manage LootSpec</h1>

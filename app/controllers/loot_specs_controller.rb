@@ -1,4 +1,4 @@
-class Gachi::LootSpecsController < ApplicationController
+class LootSpecsController < ApplicationController
   before_action :set_loot_spec, only: [:show, :update, :destroy]
 
   # GET /lootSpecs

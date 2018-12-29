@@ -23,5 +23,7 @@ Rails.application.routes.draw do
     resources :loot_combination_result_sets
     resources :loot_combinations
   end
+
+  resources :loot_specs
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -11,6 +11,8 @@ gem 'sqlite3', '~> 1.3', '>= 1.3.13'
 gem 'puma'
 gem 'raml_ruby'
 
+gem 'jbuilder', '~> 2.5'
+
 group :development, :test do
   gem 'pry'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

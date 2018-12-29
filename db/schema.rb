@@ -147,7 +147,7 @@ ActiveRecord::Schema.define(version: 2018_12_25_213754) do
     t.string "name"
   end
 
-  create_table "loot_types", force: :cascade do |t|
+  create_table "loot_specs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"

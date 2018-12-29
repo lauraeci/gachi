@@ -1,19 +1,19 @@
 class Gachi::LootTypesController < ApplicationController
   before_action :set_loot_type, only: [:show, :update, :destroy]
 
-  # GET /loot_types
+  # GET /loot_specs
   def index
     @loot_types = LootType.all
 
     render json: @loot_types
   end
 
-  # GET /loot_types/1
+  # GET /loot_specs/1
   def show
     render json: @loot_type
   end
 
-  # POST /loot_types
+  # POST /loot_specs
   def create
     @loot_type = LootType.new(loot_type_params)
 
@@ -24,7 +24,7 @@ class Gachi::LootTypesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /loot_types/1
+  # PATCH/PUT /loot_specs/1
   def update
     if @loot_type.update(loot_type_params)
       render json: @loot_type
@@ -33,7 +33,7 @@ class Gachi::LootTypesController < ApplicationController
     end
   end
 
-  # DELETE /loot_types/1
+  # DELETE /loot_specs/1
   def destroy
     @loot_type.destroy
   end

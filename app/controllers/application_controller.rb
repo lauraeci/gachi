@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::API
+  include ActionView::Rendering
   attr_reader :current_user
+
+  def render_to_body(options)
+    _render_to_body_with_renderer(options) || super
+  end
 
   protected
   def authenticate_request!

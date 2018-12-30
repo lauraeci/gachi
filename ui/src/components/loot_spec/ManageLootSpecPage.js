@@ -4,6 +4,7 @@ import LootSpecForm from './LootSpecForm';
 import {saveLootSpec} from "../../actions/lootSpecActions";
 import {lootSpecsFormattedForDropdown} from '../../selectors/selectors';
 import toastr from 'toastr';
+import { DirectUpload } from "activestorage";
 
 export class ManageLootSpecPage extends React.Component {
   constructor(props, context) {
@@ -11,12 +12,14 @@ export class ManageLootSpecPage extends React.Component {
 
     this.state = {
       lootSpec: Object.assign({}, props.lootSpec),
+      image: Object.assign({}, props.image),
       errors: {},
       saving: false
     };
 
     this.updateLootSpecState = this.updateLootSpecState.bind(this);
     this.saveNewLootSpec = this.saveNewLootSpec.bind(this);
+    this.fileChangeHandler = this.fileChangeHandler.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -26,11 +29,17 @@ export class ManageLootSpecPage extends React.Component {
     }
   }
 
+  fileChangeHandler(event) {
+    const file = event.target.files[0];
+    this.setState({image: file})
+  }
+
   updateLootSpecState(event) {
     const field = event.target.name;
     let lootSpec = Object.assign({}, this.state.lootSpec);
+    let image = Object.assign({}, this.state.image);
     lootSpec[field] = event.target.value;
-    return this.setState({lootSpec: lootSpec});
+    return this.setState({lootSpec: lootSpec, state: image});
   }
 
   lootSpecFormIsValid() {
@@ -56,11 +65,14 @@ export class ManageLootSpecPage extends React.Component {
 
     this.setState({saving: true});
 
+    const formData = new FormData()
+    formData.append(this.state.image.name, this.state.image);
+    formData.append("lvl", this.state.lootSpec.lvl);
+    formData.append("name", this.state.lootSpec.name);
 
-    this.props.saveLootSpec(this.state.lootSpec)
+    this.props.saveLootSpec(formData)
       .then(() => this.redirect())
       .catch(error => {
-        alert(error)
         toastr.error(error);
         this.setState({saving: false});
       });
@@ -68,7 +80,6 @@ export class ManageLootSpecPage extends React.Component {
 
   redirect() {
     this.setState({saving: false});
-    alert("Save");
     toastr.success('LootSpec saved');
     this.context.router.push('/loot_specs');
   }
@@ -77,6 +88,7 @@ export class ManageLootSpecPage extends React.Component {
     return (
       <LootSpecForm
         onChange={this.updateLootSpecState}
+        fileChangeHandler={this.fileChangeHandler}
         onSave={this.saveNewLootSpec}
         lootSpec={this.state.lootSpec}
         errors={this.state.errors}
@@ -112,6 +124,7 @@ function mapStateToProps(state, ownProps) {
 
   return {
     lootSpec: lootSpec,
+    image: state.image,
     lootSpecs: lootSpecsFormattedForDropdown(state.lootSpecs)
   };
 }

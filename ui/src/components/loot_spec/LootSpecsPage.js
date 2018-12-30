@@ -1,7 +1,5 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as lootSpecActions from '../../actions/lootSpecActions';
 import LootSpecList from './LootSpecList';
 import {browserHistory} from 'react-router';
 

@@ -20,20 +20,13 @@ export const loadLootSpecs = () => {
   };
 };
 
-export const saveLootSpec = (lootSpec) => {
+export const saveLootSpec = (formData) => {
   return dispatch => {
     return fetch('/gachi/loot_specs',
       {
         credentials: "same-origin",
         method: "POST",
-        headers: {
-          Accept: 'application/json',
-          'content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: lootSpec.name,
-          lvl: lootSpec.lvl
-        })
+        body: formData
       }
     ).then(
       response => {

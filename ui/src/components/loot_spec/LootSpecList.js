@@ -7,8 +7,10 @@ const LootSpecList = ({lootSpecs}) => {
       <thead>
       <tr>
         <th>&nbsp;</th>
+        <th>&nbsp;</th>
         <th>Name</th>
         <th>Level</th>
+        <th></th>
       </tr>
       </thead>
       <tbody>

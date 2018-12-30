@@ -1,10 +1,15 @@
 import React from 'react';
 import TextInput from '../common/TextInput';
 
-const LootSpecForm = ({lootSpec, onSave, onChange, saving, errors}) => {
+const LootSpecForm = ({lootSpec, onChange, fileChangeHandler, onSave, saving, errors}) => {
   return (
     <form>
       <h1>Manage LootSpec</h1>
+
+      <td><img src={lootSpec.image_url}/></td>
+
+      <input type="file" onChange={fileChangeHandler}/>
+
       <TextInput
         name="name"
         label="Name"

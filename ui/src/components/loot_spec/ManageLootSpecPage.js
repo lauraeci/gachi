@@ -4,7 +4,6 @@ import LootSpecForm from './LootSpecForm';
 import {saveLootSpec} from "../../actions/lootSpecActions";
 import {lootSpecsFormattedForDropdown} from '../../selectors/selectors';
 import toastr from 'toastr';
-import { DirectUpload } from "activestorage";
 
 export class ManageLootSpecPage extends React.Component {
   constructor(props, context) {
@@ -66,7 +65,7 @@ export class ManageLootSpecPage extends React.Component {
     this.setState({saving: true});
 
     const formData = new FormData()
-    formData.append(this.state.image.name, this.state.image);
+    formData.append("image", this.state.image);
     formData.append("lvl", this.state.lootSpec.lvl);
     formData.append("name", this.state.lootSpec.name);
 

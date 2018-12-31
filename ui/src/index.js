@@ -11,10 +11,12 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
 import {loadLootSpecs} from "./actions/lootSpecActions";
 import {loadGames} from "./actions/gameActions";
+import {loadLoots} from "./actions/lootActions";
 
 const store = configureStore();
 store.dispatch(loadLootSpecs());
 store.dispatch(loadGames());
+store.dispatch(loadLoots());
 
 render(
   <Provider store={store}>

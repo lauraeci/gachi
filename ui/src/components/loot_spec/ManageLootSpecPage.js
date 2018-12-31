@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import LootSpecForm from './LootSpecForm';
-import {saveLootSpec} from "../../actions/lootSpecActions";
-import {lootSpecsFormattedForDropdown} from '../../selectors/selectors';
+import {saveLoot} from "../../actions/lootSpecActions";
+import {lootsFormattedForDropdown} from '../../selectors/selectors';
 import toastr from 'toastr';
 
 export class ManageLootSpecPage extends React.Component {
@@ -16,7 +16,7 @@ export class ManageLootSpecPage extends React.Component {
       saving: false
     };
 
-    this.updateLootSpecState = this.updateLootSpecState.bind(this);
+    this.updateLootstate = this.updateLootstate.bind(this);
     this.saveNewLootSpec = this.saveNewLootSpec.bind(this);
     this.fileChangeHandler = this.fileChangeHandler.bind(this);
   }
@@ -33,7 +33,7 @@ export class ManageLootSpecPage extends React.Component {
     this.setState({image: file})
   }
 
-  updateLootSpecState(event) {
+  updateLootstate(event) {
     const field = event.target.name;
     let lootSpec = Object.assign({}, this.state.lootSpec);
     let image = Object.assign({}, this.state.image);
@@ -86,7 +86,7 @@ export class ManageLootSpecPage extends React.Component {
   render() {
     return (
       <LootSpecForm
-        onChange={this.updateLootSpecState}
+        onChange={this.updateLootstate}
         fileChangeHandler={this.fileChangeHandler}
         onSave={this.saveNewLootSpec}
         lootSpec={this.state.lootSpec}
@@ -106,8 +106,8 @@ ManageLootSpecPage.contextTypes = {
   router: PropTypes.object
 };
 
-function getLootSpecById(lootSpecs, id) {
-  const lootSpec = lootSpecs.filter(lootSpec => lootSpec.id == id);
+function getLootSpecById(loots, id) {
+  const lootSpec = loots.filter(lootSpec => lootSpec.id == id);
   if (lootSpec) return lootSpec[0]; //since filter returns an array, have to grab the first.
   return null;
 }
@@ -117,19 +117,19 @@ function mapStateToProps(state, ownProps) {
 
   let lootSpec = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
 
-  if (lootSpecId && state.lootSpecs.length > 0) {
-    lootSpec = getLootSpecById(state.lootSpecs, lootSpecId);
+  if (lootSpecId && state.loots.length > 0) {
+    lootSpec = getLootSpecById(state.loots, lootSpecId);
   }
 
   return {
     lootSpec: lootSpec,
     image: state.image,
-    lootSpecs: lootSpecsFormattedForDropdown(state.lootSpecs)
+    loots: lootsFormattedForDropdown(state.loots)
   };
 }
 
 const mapDispatchToProps = {
-  saveLootSpec
+  saveLootSpec: saveLoot
 };
 
 

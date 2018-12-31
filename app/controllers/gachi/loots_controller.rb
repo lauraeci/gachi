@@ -5,21 +5,26 @@ module Gachi
     # GET /loots
     def index
       @loots = Loot.all
-
-      respond_with @loots
     end
 
     # GET /loots/1
     def show
-      respond_with @loot
     end
 
     # POST /loots
     def create
       @loot = Loot.new(loot_params)
 
+      @loot.rarity_index = params[:rarity_index]
+      @loot.name = params[:name]
+      @loot.game_id = params[:game_id]
+
+      image = params[:image]
+      @loot.image.attach(io: File.open(image.tempfile), filename: image.original_filename)
+
+
       if @loot.save
-        render json: @loot, status: :created, location: @loot
+        render json: @loot, status: :created, location: gachi_loots_url(@loot)
       else
         render json: @loot.errors, status: :unprocessable_entity
       end

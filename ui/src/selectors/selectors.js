@@ -7,6 +7,15 @@ export function lootSpecsFormattedForDropdown(lootSpecs) {
   });
 }
 
+export function lootsFormattedForDropdown(loots) {
+  return loots.map(loots => {
+    return {
+      value: loots.id,
+      text: loots.name
+    };
+  });
+}
+
 export function gamesFormattedForDropdown(games) {
   return games.map(games => {
     return {

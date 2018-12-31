@@ -1,9 +1,9 @@
 import * as types from './actionTypes';
 import { createAction } from "redux-actions";
 
-export const loadLootSpecs = () => {
+export const loadLoots = () => {
   return dispatch => {
-    return fetch('/gachi/loot_specs', {credentials: "same-origin"}).then(
+    return fetch('/gachi/loots', {credentials: "same-origin"}).then(
       response => {
         if (response.status == 200) {
           return response.json();
@@ -13,7 +13,7 @@ export const loadLootSpecs = () => {
 
         return Promise.reject(Error(`StatusCode: ${response.status}`));
       }).then(result => {
-      dispatch(receivedLootSpecs(result));
+      dispatch(receivedLoots(result));
     }).catch(error => {
       throw (error);
     });
@@ -22,7 +22,7 @@ export const loadLootSpecs = () => {
 
 export const saveLoot = (formData) => {
   return dispatch => {
-    return fetch('/gachi/loot_specs',
+    return fetch('/gachi/loots',
       {
         credentials: "same-origin",
         method: "POST",
@@ -38,7 +38,7 @@ export const saveLoot = (formData) => {
 
         return Promise.reject(Error(`StatusCode: ${response.status}`));
       }).then(result => {
-      dispatch(savedLootSpecs(result));
+      dispatch(savedLoots(result));
     }).catch(error => {
       throw (error);
     });
@@ -46,5 +46,5 @@ export const saveLoot = (formData) => {
 };
 
 
-export const receivedLootSpecs = createAction(types.LOAD_LOOTSPECS_SUCCESS);
-export const savedLootSpecs = createAction(types.SAVE_LOOTSPECS_SUCCESS);
+export const receivedLoots = createAction(types.LOAD_LOOTS_SUCCESS);
+export const savedLoots = createAction(types.SAVE_LOOTS_SUCCESS);

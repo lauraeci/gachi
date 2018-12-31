@@ -1,4 +1,5 @@
 export default {
   lootSpecs: [],
-  games: []
+  games: [],
+  loots: []
 };

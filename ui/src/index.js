@@ -12,11 +12,13 @@ import '../node_modules/toastr/build/toastr.min.css';
 import {loadLootSpecs} from "./actions/lootSpecActions";
 import {loadGames} from "./actions/gameActions";
 import {loadLoots} from "./actions/lootActions";
+import {loadLootCombinations} from "./actions/lootCombinationActions";
 
 const store = configureStore();
 store.dispatch(loadLootSpecs());
 store.dispatch(loadGames());
 store.dispatch(loadLoots());
+store.dispatch(loadLootCombinations());
 
 render(
   <Provider store={store}>

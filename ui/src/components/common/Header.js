@@ -11,6 +11,8 @@ const Header = ({loading}) => {
       {" | "}
       <Link to="/loots" activeClassName="active">Loot</Link>
       {" | "}
+      <Link to="/loot_combinations" activeClassName="active">Loot Combinations</Link>
+      {" | "}
       <Link to="/games" activeClassName="active">Games</Link>
       {" | "}
       <Link to="/about" activeClassName="active">About</Link>

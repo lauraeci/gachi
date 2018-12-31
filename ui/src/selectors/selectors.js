@@ -24,3 +24,12 @@ export function gamesFormattedForDropdown(games) {
     }
   });
 }
+
+export function lootsFormattedForDropdown(lootCombinations) {
+  return lootCombinations.map(lootCombinations => {
+    return {
+      value: lootCombinations.id,
+      text: lootCombinations.loot_id
+    }
+  });
+}

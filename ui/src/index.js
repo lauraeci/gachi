@@ -10,9 +10,11 @@ import './styles/styles.css'; //Webpack can import CSS files too!
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/toastr/build/toastr.min.css';
 import {loadLootSpecs} from "./actions/lootSpecActions";
+import {loadGames} from "./actions/gameActions";
 
 const store = configureStore();
 store.dispatch(loadLootSpecs());
+store.dispatch(loadGames());
 
 render(
   <Provider store={store}>

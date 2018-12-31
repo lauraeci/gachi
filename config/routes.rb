@@ -18,12 +18,12 @@ Rails.application.routes.draw do
 
     # front-end
     resources :loot_specs
+
+    resources :games
     resources :loot_types
     resources :loots
     resources :loot_combination_result_sets
     resources :loot_combinations
   end
-
-  resources :loot_specs
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

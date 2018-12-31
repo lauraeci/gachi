@@ -10,7 +10,7 @@ class LootSpecsPage extends React.Component {
   }
 
   lootSpecRow(lootSpec, index) {
-    return <div key={index}>{lootSpec.title}</div>;
+    return <div key={index}>{lootSpec.name}</div>;
   }
 
   redirectToAddLootSpecPage() {

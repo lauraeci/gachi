@@ -1,8 +1,10 @@
 import {combineReducers} from 'redux';
 import lootSpecs from './lootSpecReducer';
+import games from './gameReducer'
 
 const rootReducer = combineReducers({
-  lootSpecs
+  lootSpecs,
+  games
 });
 
 export default rootReducer;

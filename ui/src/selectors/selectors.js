@@ -6,3 +6,12 @@ export function lootSpecsFormattedForDropdown(lootSpecs) {
     };
   });
 }
+
+export function gamesFormattedForDropdown(games) {
+  return games.map(games => {
+    return {
+      value: games.id,
+      text: games.name
+    }
+  });
+}

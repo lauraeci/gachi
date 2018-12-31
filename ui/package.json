@@ -32,6 +32,7 @@
     "react-router-redux": "4.0.4",
     "redux": "3.5.2",
     "redux-actions": "^2.6.4",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "2.0.1",
     "toastr": "2.1.2"
   },

@@ -19,12 +19,6 @@ class Gachi::LootSpecsController < ApplicationController
     image = params[:image]
     @loot_spec.image.attach(io: File.open(image.tempfile), filename: image.original_filename)
 
-    # logger.info(params)
-    logger.info(params[:lvl])
-    logger.info(params[:name])
-    logger.info(image.tempfile)
-    logger.info(image.original_filename)
-
     if @loot_spec.save
       render json: @loot_spec, status: :created, location: gachi_loot_specs_url(@loot_spec)
     else

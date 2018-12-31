@@ -8,9 +8,9 @@ const LootCombinationForm = ({lootCombination, allLoots, onChange, fileChangeHan
 
       <SelectInput
         name="loot_id"
-        label="Loot Id"
+        label="Loot 1"
         value={lootCombination.loot_id}
-        defaultOption="Select Game"
+        defaultOption="Select Loot"
         options={allLoots}
         onChange={onChange} error={errors.loot_id}/>
 
@@ -19,7 +19,7 @@ const LootCombinationForm = ({lootCombination, allLoots, onChange, fileChangeHan
         name="combined_with_loot_id"
         label="Combined with Loot 2"
         value={lootCombination.combined_with_loot_id}
-        defaultOption="Select Game"
+        defaultOption="Select Loot"
         options={allLoots}
         onChange={onChange} error={errors.combined_with_loot_id}/>
 

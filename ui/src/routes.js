@@ -10,7 +10,7 @@ import ManageLootPage from './components/loot/ManageLootPage';
 import ManageGamePage from './components/game/ManageGamePage';
 import GamePage from './components/game/GamePage';
 import LootCombinationPage from "./components/loot_combinations/LootCombinationPage";
-import {ManageLootCombinationPage} from "./components/loot_combinations/ManageLootCombinationPage";
+import ManageLootCombinationPage from "./components/loot_combinations/ManageLootCombinationPage";
 
 export default (
   <Route path="/" component={App}>

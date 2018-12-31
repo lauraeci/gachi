@@ -25,7 +25,7 @@ export function gamesFormattedForDropdown(games) {
   });
 }
 
-export function lootsFormattedForDropdown(lootCombinations) {
+export function lootCombinationsFormattedForDropdown(lootCombinations) {
   return lootCombinations.map(lootCombinations => {
     return {
       value: lootCombinations.id,

@@ -121,7 +121,6 @@ function mapStateToProps(state, ownProps) {
   return {
     lootCombination: lootCombination,
     loots: lootsFormattedForDropdown(state.loots),
-    lootCombinations: lootsFormattedForDropdown(state.lootCombinations)
   };
 }
 

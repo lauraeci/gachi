@@ -16,9 +16,11 @@ class Gachi::LootCombinationsController < ApplicationController
   # POST /loot_combinations
   def create
     @loot_combination = LootCombination.new(loot_combination_params)
+    @loot_combination.combined_with_loot_id = params[:combined_with_loot_id]
+    @loot_combination.loot_id = params[:loot_id]
 
     if @loot_combination.save
-      render json: @loot_combination, status: :created, location: @loot_combination
+      render json: @loot_combination, status: :created, location: gachi_loot_combinations_url(@loot_combination)
     else
       render json: @loot_combination.errors, status: :unprocessable_entity
     end

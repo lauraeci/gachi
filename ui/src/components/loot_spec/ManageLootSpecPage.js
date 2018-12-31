@@ -123,8 +123,7 @@ function mapStateToProps(state, ownProps) {
 
   return {
     lootSpec: lootSpec,
-    image: state.image,
-    loots: lootsFormattedForDropdown(state.loots)
+    image: state.image
   };
 }
 

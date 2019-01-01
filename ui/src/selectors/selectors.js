@@ -33,3 +33,12 @@ export function lootCombinationsFormattedForDropdown(lootCombinations) {
     }
   });
 }
+
+export function lootCombinationResultSetsFormattedForDropdown(lootCombinationResultsSet) {
+  return lootCombinationResultsSet.map(lootCombinationResultsSets => {
+    return {
+      value: lootCombinationResultsSets.id,
+      text: lootCombinationResultsSets.loot_id
+    }
+  })
+}

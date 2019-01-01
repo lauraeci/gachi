@@ -13,12 +13,14 @@ import {loadLootSpecs} from "./actions/lootSpecActions";
 import {loadGames} from "./actions/gameActions";
 import {loadLoots} from "./actions/lootActions";
 import {loadLootCombinations} from "./actions/lootCombinationActions";
+import {loadLootCombinationResultSet} from "./actions/lootCombinationResultSetActions";
 
 const store = configureStore();
 store.dispatch(loadLootSpecs());
 store.dispatch(loadGames());
 store.dispatch(loadLoots());
 store.dispatch(loadLootCombinations());
+store.dispatch(loadLootCombinationResultSet());
 
 render(
   <Provider store={store}>

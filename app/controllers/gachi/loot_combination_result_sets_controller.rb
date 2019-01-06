@@ -4,13 +4,10 @@ class Gachi::LootCombinationResultSetsController < ApplicationController
   # GET /loot_combination_result_sets
   def index
     @loot_combination_result_sets = LootCombinationResultSet.all
-
-    render json: @loot_combination_result_sets
   end
 
   # GET /loot_combination_result_sets/1
   def show
-    render json: @loot_combination_result_set
   end
 
   # POST /loot_combination_result_sets

@@ -1,0 +1,1 @@
+json.partial! "gachi/loot_combination_result_sets/loot_combination_result_set", loot_combination_result_set: @loot_combination_result_set

@@ -26,7 +26,7 @@ const LootCombinationResultSetForm = ({lootCombinationResultSet, loot_combinatio
       <TextInput
         name="loot_combinations_id"
         label="loot_combinations_id Index"
-        value={loot_combination_id}
+        value={lootCombinationResultSet.loot_combination_id}
         onChange={onChange}
         error={errors.loot_combinations_id}/>
 

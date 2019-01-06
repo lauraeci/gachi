@@ -23,7 +23,7 @@ export class ManageLootCombinationResultSetPage extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.lootCombinationResultSet.name != nextProps.lootCombinationResultSet.name) {
+    if (this.props.lootCombinationResultSet.loot_id != nextProps.lootCombinationResultSet.loot_id) {
       // Necessary to populate form when existing lootCombinationResultSet_spec is loaded directly.
       this.setState({lootCombinationResultSet: Object.assign({}, nextProps.lootCombinationResultSet)});
     }
@@ -76,14 +76,13 @@ export class ManageLootCombinationResultSetPage extends React.Component {
   redirect() {
     this.setState({saving: false});
     toastr.success('LootCombinationResultSet saved');
-    this.context.router.push('/lootCombinationResultSet_specs');
+    this.context.router.push('/loot_combinations');
   }
 
   render() {
     return (
       <LootCombinationResultSetForm
         lootCombinationResultSet={this.state.lootCombinationResultSet}
-        loot_combination_id={this.props.lootCombinationId}
         allLoots={this.props.loots}
         onChange={this.updateLootCombinationResultSetState}
         onSave={this.saveNewLootCombinationResultSet}
@@ -105,13 +104,13 @@ ManageLootCombinationResultSetPage.contextTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
-  const loot_combination_id = ownProps.params.id; // from the path `/lootCombinationResultSet_spec/:id`
+  const loot_combination_id = ownProps.params.id;
 
-  console.log("LOOT_COMBINATION_ID");
-  console.log(loot_combination_id);
+  let lootCombinationResultSet = {id: '', loot_combination_id: loot_combination_id, rarity: '', loot_id: ''}
+
   return {
     lootCombinationId: loot_combination_id,
-    lootCombinationResultSets: lootCombinationResultSetsFormattedForDropdown(state.lootCombinationResultSets),
+    lootCombinationResultSet: lootCombinationResultSet,
     loots: lootsFormattedForDropdown(state.loots)
   };
 }

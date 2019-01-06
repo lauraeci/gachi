@@ -7,6 +7,7 @@ const LootCombinationList = ({lootCombinations}) => {
       <thead>
       <tr>
         <th>&nbsp;</th>
+        <th>Id</th>
         <th>Loot Id</th>
         <th>combined_with_loot_id</th>
         <th></th>

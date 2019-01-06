@@ -6,8 +6,8 @@ const LootCombinationResultSetListRow = ({lootCombinationResultSet}) => {
     <tr>
       <td><Link to={'/lootCombinationResultSet/' + lootCombinationResultSet.id}>{lootCombinationResultSet.name}</Link></td>
       <td><img src={lootCombinationResultSet.image_url} /> </td>
-      <td>{lootCombinationResultSet.name}</td>
-      <td>{lootCombinationResultSet.rarity_index}</td>
+      <td>{lootCombinationResultSet.loot_id}</td>
+      <td>{lootCombinationResultSet.rarity}</td>
     </tr>
   );
 };

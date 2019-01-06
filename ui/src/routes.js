@@ -22,7 +22,7 @@ export default (
     <Route path="loot_combinations" component={LootCombinationPage}/>
     <Route path="loot_combination" component={ManageLootCombinationPage}/>
     <Route path="loot_combination/:id" component={ManageLootCombinationPage}/>
-    <Route path="loot_combination_result_set" component={ManageLootCombinationResultSetPage}/>
+    <Route path="loot_combination/:id/loot_combination_result_set" component={ManageLootCombinationResultSetPage}/>
     <Route path="loots" component={LootPage}/>
     <Route path="loot" component={ManageLootPage}/>
     <Route path="loot/:id" component={ManageLootPage}/>

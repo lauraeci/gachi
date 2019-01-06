@@ -41,8 +41,8 @@ export class ManageLootCombinationResultSetPage extends React.Component {
     let formIsValid = true;
     let errors = {};
 
-    if (this.state.lootCombinationResultSet.name.length < 1) {
-      errors.title = 'Title must be at least 5 characters.';
+    if (!this.state.lootCombinationResultSet.loot_id || this.state.lootCombinationResultSet.loot_id.length < 1) {
+      errors.title = 'Loot Id must be set.';
       formIsValid = false;
     }
 
@@ -60,7 +60,7 @@ export class ManageLootCombinationResultSetPage extends React.Component {
 
     this.setState({saving: true});
 
-    const formData = new FormData()
+    const formData = new FormData();
     formData.append("rarity", this.state.lootCombinationResultSet.rarity_index);
     formData.append("loot_combinations_id", this.state.lootCombinationResultSet.loot_combinations_id);
     formData.append("loot_id", this.state.lootCombinationResultSet.loot_id);
@@ -83,7 +83,7 @@ export class ManageLootCombinationResultSetPage extends React.Component {
     return (
       <LootCombinationResultSetForm
         lootCombinationResultSet={this.state.lootCombinationResultSet}
-        loot_combination_id={this.props.loot_combination_id}
+        loot_combination_id={this.props.lootCombinationId}
         allLoots={this.props.loots}
         onChange={this.updateLootCombinationResultSetState}
         onSave={this.saveNewLootCombinationResultSet}
@@ -104,23 +104,13 @@ ManageLootCombinationResultSetPage.contextTypes = {
   router: PropTypes.object
 };
 
-function getLootCombinationResultSetById(lootCombinationResultSets, id) {
-  const lootCombinationResultSet = lootCombinationResultSet.filter(lootCombinationResultSet => lootCombinationResultSet.id == id);
-  if (lootCombinationResultSet) return lootCombinationResultSet[0]; //since filter returns an array, have to grab the first.
-  return null;
-}
-
 function mapStateToProps(state, ownProps) {
-  const lootCombinationResultSetId = ownProps.params.id; // from the path `/lootCombinationResultSet_spec/:id`
+  const loot_combination_id = ownProps.params.id; // from the path `/lootCombinationResultSet_spec/:id`
 
-  let lootCombinationResultSet = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
-
-  if (lootCombinationResultSetId && state.lootCombinationResultSets.length > 0) {
-    lootCombinationResultSet = getLootCombinationResultSetById(state.lootCombinationResultSets, lootCombinationResultSetId);
-  }
-
+  console.log("LOOT_COMBINATION_ID");
+  console.log(loot_combination_id);
   return {
-    lootCombinationResultSet: lootCombinationResultSet,
+    lootCombinationId: loot_combination_id,
     lootCombinationResultSets: lootCombinationResultSetsFormattedForDropdown(state.lootCombinationResultSets),
     loots: lootsFormattedForDropdown(state.loots)
   };

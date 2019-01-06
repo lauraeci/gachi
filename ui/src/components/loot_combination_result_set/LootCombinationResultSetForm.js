@@ -2,7 +2,7 @@ import React from 'react';
 import TextInput from '../common/TextInput';
 import SelectInput from '../common/SelectInput';
 
-const LootCombinationnResultSetForm = ({lootCombinationResultSet, loot_combination_id, allLoots, onChange, onSave, saving, errors}) => {
+const LootCombinationResultSetForm = ({lootCombinationResultSet, loot_combination_id, allLoots, onChange, onSave, saving, errors}) => {
   return (
     <form>
       <h1>Manage Loot Combinations Result Set</h1>
@@ -40,7 +40,7 @@ const LootCombinationnResultSetForm = ({lootCombinationResultSet, loot_combinati
   );
 };
 
-LootCombinationnResultSetForm.propTypes = {
+LootCombinationResultSetForm.propTypes = {
   lootCombinationResultSet: React.PropTypes.object.isRequired,
   onSave: React.PropTypes.func.isRequired,
   onChange: React.PropTypes.func.isRequired,
@@ -48,4 +48,4 @@ LootCombinationnResultSetForm.propTypes = {
   errors: React.PropTypes.object
 };
 
-export default LootCombinationnResultSetForm;
+export default LootCombinationResultSetForm;

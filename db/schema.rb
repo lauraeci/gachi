@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_31_032352) do
+ActiveRecord::Schema.define(version: 2019_01_01_234432) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 2018_12_31_032352) do
     t.integer "loot_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "loot_combinations_id"
+    t.integer "loot_combination_id"
   end
 
   create_table "loot_combinations", force: :cascade do |t|

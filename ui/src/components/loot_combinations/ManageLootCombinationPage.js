@@ -1,11 +1,11 @@
-import React, {PropTypes, Component} from 'react';
+import React, {PropTypes, Component, Fragment} from 'react';
 import {connect} from 'react-redux';
-import LootCombinationForm from './LootCombinationForm';
 import {saveLootCombination} from "../../actions/lootCombinationActions";
 import {lootsFormattedForDropdown} from '../../selectors/selectors';
-import {LootCombinationResultSetList} from '../../components/loot_combination_result_set/LootCombinationResultSetList'
 import toastr from 'toastr';
 import {browserHistory} from "react-router";
+import LootCombinationResultSetList from "../loot_combination_result_set/LootCombinationResultSetList";
+import LootCombinationForm from "./LootCombinationForm"
 
 export class ManageLootCombinationPage extends Component {
   constructor(props, context) {
@@ -13,6 +13,7 @@ export class ManageLootCombinationPage extends Component {
 
     this.state = {
       lootCombination: Object.assign({}, props.lootCombination),
+      lootCombinationResultSets: Object.assign([], props.lootCombinationResultSets),
       errors: {},
       saving: false
     };
@@ -37,7 +38,7 @@ export class ManageLootCombinationPage extends Component {
   }
 
   redirectToAddLootCombinationResultSetPage() {
-    browserHistory.push('/loot_combination_result_set');
+    browserHistory.push('/loot_combination/' + this.props.lootCombination.loot_id + '/loot_combination_result_set');
   }
 
   lootFormIsValid() {
@@ -89,24 +90,15 @@ export class ManageLootCombinationPage extends Component {
   render() {
     return (
       <div>
-        <div>
-          <LootCombinationForm
-            lootCombination={this.state.lootCombination}
-            allLoots={this.props.loots}
-            onChange={this.updateLootCombinationState}
-            onSave={this.saveNewLootCombination}
-            errors={this.state.errors}
-            saving={this.state.saving}
-          />
-        </div>
-        <div>
-          <h1>Loot Combinations Result Set</h1>
-          <input type="submit"
-                 value="Add Loot Combination Result Set"
-                 className="btn btn-primary"
-                 onClick={this.redirectToAddLootCombinationResultSetPage}/>
-          <div><LootCombinationResultSetList/></div>
-        </div>
+        <LootCombinationForm
+          lootCombination={this.state.lootCombination}
+          allLoots={this.props.loots}
+          onChange={this.updateLootCombinationState}
+          onSave={this.saveNewLootCombination}
+          errors={this.state.errors}
+          saving={this.state.saving}
+        />
+        <LootCombinationResultSetList lootCombinationResultSets={this.props.lootCombinationResultSets}/>
       </div>
     );
   }
@@ -131,15 +123,21 @@ function getLootCombinationById(lootCombinations, id) {
 function mapStateToProps(state, ownProps) {
   const lootCombinationId = ownProps.params.id; // from the path `/lootCombination_spec/:id`
 
-  let lootCombination = {id: '', watchHref: '', title: '', authorId: '', length: '', category: ''};
+  let lootCombination = {id: '', loot_id: '', combined_with_loot_id: ''};
+  let filteredLootCombinationResultsSet = state.lootCombinationResultSets;
 
   if (lootCombinationId && state.lootCombinations.length > 0) {
     lootCombination = getLootCombinationById(state.lootCombinations, lootCombinationId);
+    filteredLootCombinationResultsSet = state.lootCombinationResultSets.filter(set => set.loot_combination_id === lootCombination.id)
+  }
+
+  if (state.lootCombinationResultSets.length > 0) {
+    console.log(Object.keys(state.lootCombinationResultSets[0]))
   }
 
   return {
     lootCombination: lootCombination,
-    lootCombinationResultSets: state.lootCombinationResultSets,
+    lootCombinationResultSets: filteredLootCombinationResultsSet,
     loots: lootsFormattedForDropdown(state.loots)
   };
 }

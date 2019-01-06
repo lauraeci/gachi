@@ -32,9 +32,8 @@ export class ManageLootCombinationResultSetPage extends React.Component {
   updateLootCombinationResultSetState(event) {
     const field = event.target.name;
     let lootCombinationResultSet = Object.assign({}, this.state.lootCombinationResultSet);
-    let image = Object.assign({}, this.state.image);
     lootCombinationResultSet[field] = event.target.value;
-    return this.setState({lootCombinationResultSet: lootCombinationResultSet, state: image});
+    return this.setState({lootCombinationResultSet: lootCombinationResultSet});
   }
 
   lootCombinationResultSetFormIsValid() {
@@ -61,8 +60,8 @@ export class ManageLootCombinationResultSetPage extends React.Component {
     this.setState({saving: true});
 
     const formData = new FormData();
-    formData.append("rarity", this.state.lootCombinationResultSet.rarity_index);
-    formData.append("loot_combinations_id", this.state.lootCombinationResultSet.loot_combinations_id);
+    formData.append("rarity", this.state.lootCombinationResultSet.rarity);
+    formData.append("loot_combination_id", this.state.lootCombinationResultSet.loot_combination_id);
     formData.append("loot_id", this.state.lootCombinationResultSet.loot_id);
 
     this.props.saveLootCombinationResultSet(formData)

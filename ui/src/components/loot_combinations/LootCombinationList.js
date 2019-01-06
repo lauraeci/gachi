@@ -9,7 +9,9 @@ const LootCombinationList = ({lootCombinations}) => {
         <th>&nbsp;</th>
         <th>Id</th>
         <th>Loot Id</th>
+        <th></th>
         <th>combined_with_loot_id</th>
+        <th></th>
         <th></th>
       </tr>
       </thead>

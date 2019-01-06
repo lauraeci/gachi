@@ -14,6 +14,8 @@ const LootCombinationForm = ({lootCombination, allLoots, onChange, fileChangeHan
         options={allLoots}
         onChange={onChange} error={errors.loot_id}/>
 
+      <td><img src={lootCombination.loot_image_url}/></td>
+
 
       <SelectInput
         name="combined_with_loot_id"
@@ -22,6 +24,8 @@ const LootCombinationForm = ({lootCombination, allLoots, onChange, fileChangeHan
         defaultOption="Select Loot"
         options={allLoots}
         onChange={onChange} error={errors.combined_with_loot_id}/>
+
+      <td><img src={lootCombination.combined_with_loot_image_url}/></td>
 
       <input
         type="submit"

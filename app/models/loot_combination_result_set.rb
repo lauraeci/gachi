@@ -7,8 +7,4 @@ class LootCombinationResultSet < ApplicationRecord
   def loot_image
     image_for(self.loot_id)
   end
-
-  def loot_combination_image
-    image_for(self.loot_combination_id)
-  end
 end

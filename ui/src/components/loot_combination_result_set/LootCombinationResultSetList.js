@@ -10,6 +10,7 @@ const LootCombinationResultSetList = ({lootCombinationResultSets}) => {
           <th>&nbsp;</th>
           <th>&nbsp;</th>
           <th>Loot Id</th>
+          <th>Id</th>
           <th>Rarity</th>
           <th></th>
         </tr>

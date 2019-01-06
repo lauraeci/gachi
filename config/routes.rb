@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   namespace :gachi do
     resources :builders
     resources :loot_builder_groups
@@ -16,14 +17,13 @@ Rails.application.routes.draw do
       end
     end
 
-    # front-end
     resources :loot_specs
-
     resources :games
     resources :loot_types
     resources :loots
     resources :loot_combination_result_sets
     resources :loot_combinations
+    resources :loot_outcomes
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

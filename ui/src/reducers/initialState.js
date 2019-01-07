@@ -3,5 +3,6 @@ export default {
   games: [],
   lootCombinations: [],
   lootCombinationResultSets: [],
-  loots: []
+  loots: [],
+  lootOutcomes: []
 };

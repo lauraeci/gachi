@@ -6,6 +6,8 @@ import toastr from 'toastr';
 import {browserHistory} from "react-router";
 import LootCombinationResultSetList from "../loot_combination_result_set/LootCombinationResultSetList";
 import LootCombinationForm from "./LootCombinationForm"
+import {generateLootOutcome} from "../../actions/lootOutcomeActions";
+import LootOutcomeList from "../loot_outcome/LootOutcomeList";
 
 export class ManageLootCombinationPage extends Component {
   constructor(props, context) {
@@ -20,6 +22,7 @@ export class ManageLootCombinationPage extends Component {
 
     this.updateLootCombinationState = this.updateLootCombinationState.bind(this);
     this.saveNewLootCombination = this.saveNewLootCombination.bind(this);
+    this.generateLootOutcome = this.generateLootOutcome.bind(this);
     this.redirectToAddLootCombinationResultSetPage = this.redirectToAddLootCombinationResultSetPage.bind(this)
   }
 
@@ -81,6 +84,20 @@ export class ManageLootCombinationPage extends Component {
       });
   }
 
+  generateLootOutcome(event) {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("loot_combination_id", this.state.lootCombination.id);
+
+    this.props.generateLootOutcome(formData)
+      .then(() => this.redirect())
+      .catch(error => {
+        toastr.error(error);
+        this.setState({saving: false});
+      });
+  }
+
   redirect() {
     this.setState({saving: false});
     toastr.success('Loot saved');
@@ -105,6 +122,13 @@ export class ManageLootCombinationPage extends Component {
                value="Add LootCombinationResultSet"
                className="btn btn-primary"
                onClick={this.redirectToAddLootCombinationResultSetPage}/>
+
+        <input type="submit"
+               value="Generate Loot Outcome"
+               className="btn btn-primary"
+               onClick={this.generateLootOutcome}/>
+
+        <LootOutcomeList lootOutcomes={this.props.lootOutcomes}/>
       </div>
     );
   }
@@ -140,12 +164,14 @@ function mapStateToProps(state, ownProps) {
   return {
     lootCombination: lootCombination,
     lootCombinationResultSets: filteredLootCombinationResultsSet,
-    loots: lootsFormattedForDropdown(state.loots)
+    loots: lootsFormattedForDropdown(state.loots),
+    lootOutcomes: state.lootOutcomes
   };
 }
 
 const mapDispatchToProps = {
-  saveLootCombination: saveLootCombination
+  saveLootCombination: saveLootCombination,
+  generateLootOutcome: generateLootOutcome
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageLootCombinationPage);

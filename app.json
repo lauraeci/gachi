@@ -8,7 +8,7 @@
   "repository": "https://github.com/lauraeci/gachi",
   "logo": "http://node-js-sample.herokuapp.com/node.svg",
   "addons": [
-    "heroku-postgresql",
+    "heroku-postgresql"
   ],
   "scripts": {
     "predeploy": [
@@ -16,5 +16,13 @@
       "./scripts/run_node.sh",
       "./scripts/run_rails.sh"
     ]
-  }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ]
 }

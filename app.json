@@ -1,0 +1,20 @@
+{
+  "name": "Gachi",
+  "description": "Gacha app deployed on Heroku.",
+  "keywords": [
+    "App",
+    "Heroku"
+  ],
+  "repository": "https://github.com/lauraeci/gachi",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "addons": [
+    "heroku-postgresql",
+  ],
+  "scripts": {
+    "predeploy": [
+      "./scripts/run_nginx.sh",
+      "./scripts/run_node.sh",
+      "./scripts/run_rails.sh"
+    ]
+  }
+}
